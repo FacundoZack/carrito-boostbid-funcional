@@ -37,7 +37,6 @@ nav {
 }
 
 .logo__boostbid {
-    margin-left: 35%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -216,7 +215,7 @@ i {
 
 .carrousel__img {
     padding: 0 20px;
-    height: 100px;
+    height: 200px;
 }
 
 .contenedor__titulos {

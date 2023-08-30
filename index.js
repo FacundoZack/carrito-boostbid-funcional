@@ -1,60 +1,22 @@
-const productosArray = [
-    {
-        id: "samsung-tv",
-        titulo: "Smart TV samsung",
-        imagen: "./img/tv.png",
-        precio: 144.999
-    },
-    {
-        id: "mochila-gadnic",
-        titulo: "Mochila Gadnic antirobo",
-        imagen: "./img/mochila.png",
-        precio: 33.649
-    },
-    {
-        id: "aspiradora-robot",
-        titulo: "Aspiradora robot Gadnic",
-        imagen: "./img/aspiradora-automatica.png",
-        precio: 153.899
-    },
-    {
-        id: "proyector-gadnic",
-        titulo: "Proyector Gadnic full HD",
-        imagen: "./img/proyector.png",
-        precio: 53.891
-    },
-    {
-        id: "silla-01",
-        titulo: "Silla Game AFA",
-        imagen: "./img/sillagamer1.png",
-        precio: 199.999
-    },
-    {
-        id: "silla-02",
-        titulo: "Silla Constrictor gamer",
-        imagen: "./img/sillagamer2.PNG",
-        precio: 129.999
-    },
-    {
-        id: "silla-03",
-        titulo: "Silla Akracing arctica",
-        imagen: "./img/sillagamer3.png",
-        precio: 242.379
-    },
-    {
-        id: "silla-04",
-        titulo: "Silla gamer rosa RGB con parlantes",
-        imagen: "./img/sillagamer4.png",
-        precio: 205.321
-    }
-];
+let productosArray = []
+
+fetch("productos.json")
+    .then(Response => Response.json())
+    .then(data => {
+        productosArray = data;
+        cargarProductos(productosArray)
+    });
 
 const contenedorProductos = document.querySelector ("#contenedor-productos");
 const numerito = document.querySelector("#numerito")
 let botonesAgregar = document.querySelectorAll (".boton");
 
 function cargarProductos() {
+
+    contenedorProductos.innerHTML ="";
+
     productosArray.forEach(producto => {
+
         const article = document.createElement("article");
         article.classList.add("producto");
         article.innerHTML = `
@@ -98,6 +60,19 @@ if (productosEnCarritoLS) {
 
 
 function agregarAlCarrito (e) {
+    Toastify({
+        text: "Producto agregado",
+        duration: 3000,
+        close: true,
+        gravity: "top", 
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+        background: "linear-gradient(to right, #09667D, #198f9e)",
+        },
+        onClick: function(){}
+    }).showToast();
+    
 
     const idBoton = e.currentTarget.id;
     const productoAgregado = productosArray.find(producto => producto.id === idBoton);
